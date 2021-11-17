@@ -1,0 +1,6 @@
+@charset "utf-8";
+
+table{width: 100%;border-collapse: collapse;}
+table thead tr th{border: 1px solid #ddd;text-align: center;}
+table tbody tr td{border: 1px solid #ddd;}
+
