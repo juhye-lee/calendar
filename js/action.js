@@ -14,7 +14,8 @@ let lastDay = new Date(date.getFullYear(),date.getMonth()+1,0);
 let firstWeek = firstDay.getDay();
 let lastWeek = lastDay.getDate();
 let cell = document.querySelector('#calender')
-
+console.log(firstDay);
+ console.log(lastDay);
 
 function showcalender() {
  let cont = 1;
@@ -24,12 +25,15 @@ function showcalender() {
 
         for(let j = 0 ; j < 7 ; j++){
             let td = document.createElement("td"); 
+            let span = document.createElement("span"); 
             tr.append(td);
+            
             if(i == 0 && j < firstWeek || cont > lastWeek + 1){
                 td.innerHTML = "";
             }
             else{
-                td.innerHTML = cont;
+                td.append(span);
+                span.innerHTML = cont;
                 cont++;
             } 
         }
@@ -38,9 +42,21 @@ function showcalender() {
 
     let cellcont =  cell.getElementsByTagName('td');
     let todaymark =  today + (firstWeek - 1);
-    cellcont[todaymark].style.color= "red"
+    cellcont[todaymark].setAttribute('style','background : #ddd;') ;
+    cellcont[todaymark].childNodes[0].setAttribute('style','background : blue; color : #fff;') ;
+
+    
  }
 
-
-
 showcalender();
+
+
+// var date = new Date();
+
+// var firstDayOfMonth = new Date( date.getFullYear(), date.getMonth() , 1 );
+
+// var lastMonth = new Date ( firstDayOfMonth.setDate( firstDayOfMonth.getDate() - 1 ) );
+
+
+
+// alert(lastMonth.getFullYear() + "-" + lastMonth.getMonth());
