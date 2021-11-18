@@ -1,7 +1,10 @@
 // 1. 변수확인 typeof 
 // 2. getElementsByClassName('month'); getElementS s가 붙으면 오프젝트로 받으므로 배열처럼 써야함.
 
+
 let date =  new Date();
+
+//현재달셋팅
 let year = date.getFullYear();
 let month = date.getMonth();
 let today = date.getDate()
@@ -10,12 +13,11 @@ let lastDay = new Date(date.getFullYear(),date.getMonth()+1,0);
 let firstWeek = firstDay.getDay();
 let lastWeek = lastDay.getDate();
 
-let ex = new Date(date.getFullYear(),date.getMonth());
-console.log(ex);
 
 let cell = document.querySelector('#calender');
 console.log(`달의 첫번째 날 ${firstDay}`);
- console.log(lastDay);
+console.log(lastDay);
+
 
 function showcalender(_year , _month , _today , _firstWeek , _lastWeek) {
 
@@ -27,6 +29,10 @@ let yeartext = document.getElementsByClassName('year');
 yeartext[0].innerText = _year;
 
 // 날짜 뿌리기
+
+while ( cell.hasChildNodes() ) { cell.removeChild( cell.firstChild ); }
+
+
  let cont = 1;
     for(let i = 0 ; i < 8 ; i++){  
         let tr = document.createElement("tr"); 
@@ -60,8 +66,24 @@ yeartext[0].innerText = _year;
 
 showcalender(year , month , today , firstWeek , lastWeek);
 
+let prefirst = -1;
+let prelast = 0;
+let premonthFirst= new Date(year, month - prefirst ,1);
+let premonthLast= new Date(year, month , prelast);
 
+let premonthFirstday = premonthFirst.getDay();
+let premonthLastday = premonthLast.getDate();
 
+window.onload = function(){
+
+let premove = document.querySelector(".preMonth");
+
+    premove.addEventListener('click', function(){ 
+
+        showcalender(year , month , today , firstWeek , lastWeek);
+    });
+
+};
 
 // var date = new Date();
 
