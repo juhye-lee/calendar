@@ -14,7 +14,7 @@ let ex = new Date(date.getFullYear(),date.getMonth());
 console.log(ex);
 
 let cell = document.querySelector('#calender');
-console.log(firstDay);
+console.log(`달의 첫번째 날 ${firstDay}`);
  console.log(lastDay);
 
 function showcalender(_year , _month , _today , _firstWeek , _lastWeek) {
