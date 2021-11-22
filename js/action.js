@@ -66,21 +66,23 @@ while ( cell.hasChildNodes() ) { cell.removeChild( cell.firstChild ); }
 
 showcalender(year , month , today , firstWeek , lastWeek);
 
-let prefirst = -1;
+let prefirst = 1;
 let prelast = 0;
 let premonthFirst= new Date(year, month - prefirst ,1);
 let premonthLast= new Date(year, month , prelast);
 
 let premonthFirstday = premonthFirst.getDay();
 let premonthLastday = premonthLast.getDate();
+let preMonth = premonthFirst.getMonth() + prefirst;
+let preyear = premonthFirst.getFullYear();
 
 window.onload = function(){
 
-let premove = document.querySelector(".preMonth");
+    let premove = document.querySelector(".preMonth");
 
     premove.addEventListener('click', function(){ 
 
-        showcalender(year , month , today , firstWeek , lastWeek);
+        showcalender(preyear , preMonth , today , premonthFirstday , premonthLastday);
     });
 
 };
