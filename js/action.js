@@ -43,7 +43,7 @@ while ( cell.hasChildNodes() ) { cell.removeChild( cell.firstChild ); }
             let span = document.createElement("span"); 
             tr.append(td);
             
-            if(i == 0 && j < _firstWeek || cont > _lastWeek + 1){
+            if(i == 0 && j < _firstWeek || cont > _lastWeek ){
                 td.innerHTML = "";
             }
             else{
@@ -52,14 +52,14 @@ while ( cell.hasChildNodes() ) { cell.removeChild( cell.firstChild ); }
                 cont++;
             } 
         }
-        if(cont > _lastWeek + 1) break;
+        if(cont > _lastWeek ) break;
     }
 
     //현재날짜 표시
-    let cellcont =  cell.getElementsByTagName('td');
-    let todaymark =  _today + (_firstWeek - 1);
-    cellcont[todaymark].setAttribute('style','background : #ddd;') ;
-    cellcont[todaymark].childNodes[0].setAttribute('style','background : blue; color : #fff;') ;
+    // let cellcont =  cell.getElementsByTagName('td');
+    // let todaymark =  _today + (_firstWeek - 1);
+    // cellcont[todaymark].setAttribute('style','background : #ddd;') ;
+    // cellcont[todaymark].childNodes[0].setAttribute('style','background : blue; color : #fff;') ;
 
     
  }
@@ -68,29 +68,31 @@ showcalender(year , month , today , firstWeek , lastWeek);
 
 let prefirst = 1;
 let prelast = 0;
-let premonthFirst= new Date(year, month - prefirst ,1);
-let premonthLast= new Date(year, month , prelast);
-
-let premonthFirstday = premonthFirst.getDay();
-let premonthLastday = premonthLast.getDate();
-let preMonth = premonthFirst.getMonth() + prefirst;
-let preyear = premonthFirst.getFullYear();
 
 window.onload = function(){
 
     let premove = document.querySelector(".preMonth");
 
     premove.addEventListener('click', function(){ 
+        let premonthFirst= new Date(year, month - prefirst ,1);
+        let premonthLast= new Date(year, month , prelast);
+    
+        let premonthFirstday = premonthFirst.getDay();
+        let premonthLastday = premonthLast.getDate();
+        let preMonth = premonthFirst.getMonth();
+        let preyear = premonthFirst.getFullYear();
 
         showcalender(preyear , preMonth , today , premonthFirstday , premonthLastday);
+        prefirst ++;
+
     });
 
 };
 
+
+
+
 // var date = new Date();
-
 // var firstDayOfMonth = new Date( date.getFullYear(), date.getMonth() , 1 );
-
 // var lastMonth = new Date ( firstDayOfMonth.setDate( firstDayOfMonth.getDate() - 1 ) );
-
 // alert(lastMonth.getFullYear() + "-" + lastMonth.getMonth());
