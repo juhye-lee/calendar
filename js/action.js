@@ -55,11 +55,14 @@ while ( cell.hasChildNodes() ) { cell.removeChild( cell.firstChild ); }
         if(cont > _lastWeek ) break;
     }
 
-    //현재날짜 표시
-    // let cellcont =  cell.getElementsByTagName('td');
-    // let todaymark =  _today + (_firstWeek - 1);
-    // cellcont[todaymark].setAttribute('style','background : #ddd;') ;
-    // cellcont[todaymark].childNodes[0].setAttribute('style','background : blue; color : #fff;') ;
+    // 현재날짜 표시
+    if(_year == year && month == _month){
+        let cellcont =  cell.getElementsByTagName('td');
+        let todaymark =  _today + (_firstWeek - 1);
+        cellcont[todaymark].setAttribute('style','background : #ddd;') ;
+        cellcont[todaymark].childNodes[0].setAttribute('style','background : blue; color : #fff;') ;
+    }
+   
 
     
  }
