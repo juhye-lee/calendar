@@ -15,8 +15,7 @@ let lastWeek = lastDay.getDate();
 
 
 let cell = document.querySelector('#calender');
-console.log(`달의 첫번째 날 ${firstDay}`);
-console.log(lastDay);
+
 
 
 function showcalender(_year , _month , _today , _firstWeek , _lastWeek) {
@@ -64,31 +63,54 @@ while ( cell.hasChildNodes() ) { cell.removeChild( cell.firstChild ); }
     }
    
 
-    
  }
 
 showcalender(year , month , today , firstWeek , lastWeek);
 
-let prefirst = 1;
-let prelast = 0;
+let controll = 0;
+let last = 0;
 
 window.onload = function(){
 
     let premove = document.querySelector(".preMonth");
+    let nextMonth = document.querySelector(".nextMonth");
+
 
     premove.addEventListener('click', function(){ 
-        let premonthFirst= new Date(year, month - prefirst ,1);
-        let premonthLast= new Date(year, month , prelast);
-    
+     
+        controll --;
+        
+        let premonthFirst= new Date(year, month + controll  ,1);
+        let premonthLast= new Date(year, month + (controll + 1), 0);
+        console.log(premonthFirst);
+        console.log(premonthLast);
+
         let premonthFirstday = premonthFirst.getDay();
         let premonthLastday = premonthLast.getDate();
         let preMonth = premonthFirst.getMonth();
         let preyear = premonthFirst.getFullYear();
 
         showcalender(preyear , preMonth , today , premonthFirstday , premonthLastday);
-        prefirst ++;
+        
+        
+    });
+
+    nextMonth.addEventListener('click', function(){ 
+       
+        controll ++;
+        let nextmonthFirst= new Date(year, month + controll, 1);
+        let nextmonthLast= new Date(year, month + (controll + 1), 0);
+        console.log(nextmonthFirst);
+    
+        let nextmonthFirstday = nextmonthFirst.getDay();
+        let nextmonthLastday = nextmonthLast.getDate();
+        let nextMonth = nextmonthFirst.getMonth();
+        let nextyear = nextmonthFirst.getFullYear();
+
+        showcalender(nextyear , nextMonth , today , nextmonthFirstday , nextmonthLastday);
 
     });
+
 
 };
 
