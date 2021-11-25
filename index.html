@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,43 +9,55 @@
     <link href="css/common.css" rel="stylesheet" media="all">
     <script src="js/action.js" defer></script>
 
-    
+
     <title>Document</title>
 </head>
+
 <body>
-    <h1>달력</h1>
-    <button type="button" class="preMonth"> ◁ </button>
-    <span class="year"></span> <span class="month"></span>
-    <button type="button" class="nextMonth"> ▷ </button>
+    <h1>celender</h1>
+    <section>
+        <div class="datesection box">
+            <div class="control">
+                <button type="button" class="preMonth"> ◁ </button>
+                <span class="year"></span> <span class="month"></span>
+                <button type="button" class="nextMonth"> ▷ </button>
+            </div>
 
-    <table>
-        <colgroup>
-             <col style="width: 14.2%;">
-             <col style="width: 14.2%;">
-             <col style="width: 14.2%;">
-             <col style="width: 14.2%;">
-             <col style="width: 14.2%;">
-             <col style="width: 14.2%;">
-             <col style="width: 14.2%;">
-        </colgroup>
-        <thead>
-            <tr>
-                <th>일</th>
-                <th>월</th>
-                <th>화</th>
-                <th>수</th>
-                <th>목</th>
-                <th>금</th>
-                <th>토</th>
-            </tr>
-        </thead>
-        <tbody id="calender">
 
-        </tbody>
-    </table>
-    <p>선택한날</p>
-    <p><span>년</span></p>
-    <p><span>월</span></p>
-    <p><span>일</span></p>
+            <table>
+                <colgroup>
+                    <col style="width: 14.2%;">
+                    <col style="width: 14.2%;">
+                    <col style="width: 14.2%;">
+                    <col style="width: 14.2%;">
+                    <col style="width: 14.2%;">
+                    <col style="width: 14.2%;">
+                    <col style="width: 14.2%;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>일</th>
+                        <th>월</th>
+                        <th>화</th>
+                        <th>수</th>
+                        <th>목</th>
+                        <th>금</th>
+                        <th>토</th>
+                    </tr>
+                </thead>
+                <tbody id="calender">
+
+                </tbody>
+            </table>
+        </div>
+        <div class="todosection box">
+
+          <span>2021</span> 
+          <p>11</p>
+          <p>25</p>
+
+        </div>
+    </section>
 </body>
+
 </html>
