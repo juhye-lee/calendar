@@ -74,6 +74,7 @@ window.onload = function(){
 
     let premove = document.querySelector(".preMonth");
     let nextMonth = document.querySelector(".nextMonth");
+    
 
 
     premove.addEventListener('click', function(){ 
@@ -110,6 +111,19 @@ window.onload = function(){
         showcalender(nextyear , nextMonth , today , nextmonthFirstday , nextmonthLastday);
 
     });
+  
+    
+    
+    cell.addEventListener('click',function(event){
+       
+        var ele = event.target;
+        console.log(event);
+       
+
+   });
+
+   
+
 
 
 };
