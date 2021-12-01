@@ -112,13 +112,30 @@ window.onload = function(){
 
     });
   
-    
+ 
     
     cell.addEventListener('click',function(event){
        
-        var ele = event.target;
-        console.log(event);
+        let celltd =  cell.getElementsByTagName('td');
        
+        for( let i = 0 ; i < celltd.length; i++ ){
+            let condition = celltd[i].classList.contains('on');
+            console.log(condition);
+            if(condition){
+                celltd[i].classList.remove('on');
+            }
+            
+        }
+        var ele = event.target;
+        ele.classList.toggle('on');
+       let yeartext = document.getElementsByClassName('year');
+       document.querySelector(".selyear").innerHTML =  yeartext[0].innerText;
+
+       let monthtext = document.getElementsByClassName('month');
+       document.querySelector(".selmonth").innerHTML = monthtext[0].innerText;
+       document.querySelector(".selday").innerHTML = ele.childNodes[0].innerText;
+  
+
 
    });
 
