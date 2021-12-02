@@ -139,11 +139,32 @@ window.onload = function(){
 
    });
 
-   
+   let btnSave = document.querySelector(".save");
+   let todoText = document.querySelector(".textzone");
+   let todoList = document.querySelector("#todolist");
+
+
+   btnSave.addEventListener('click',function(){
+
+   let datesellect =  document.querySelector(".selmonth").innerHTML;
+ 
+
+   if(isNaN(datesellect)){
+       alert('달력에서 날짜를 선택하세요');
+   }
+
+    
+   let li = document.createElement("li"); 
+
+       todoList.append(li);  
+       li.innerHTML = `할일 : ${todoText.value} <button type="button" class="delete">X</button>` ;
+       
+   });
 
 
 
 };
+
 
 
 

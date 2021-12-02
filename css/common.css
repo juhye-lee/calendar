@@ -14,3 +14,4 @@ table tbody tr td.on{border: 3px solid #ddd;background: #f1f1f1;}
 table tbody tr td span{display: inline-block; border-radius: 20px; width: 20px; height: 20px; background: #ffb612; text-align: center;position: absolute; top: 5px; left: 5px;}
 .todosection{text-align: center;}
 .textzone{width: 90%; margin-top: 20px; height: 30px; border: none;}
+.save{display: block; display: block; width: 90%; background: #ffb612; color: #000; line-height: 40px; border-radius: 10px; margin: 10px auto;}
