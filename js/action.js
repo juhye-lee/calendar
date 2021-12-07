@@ -13,13 +13,10 @@ let lastDay = new Date(date.getFullYear(),date.getMonth()+1,0);
 let firstWeek = firstDay.getDay();
 let lastWeek = lastDay.getDate();
 
-
 let cell = document.querySelector('#calender');
 
 
-
 function showcalender(_year , _month , _today , _firstWeek , _lastWeek) {
-
 //  년 월  표시
 let monthtext = document.getElementsByClassName('month');
 monthtext[0].innerText = _month + 1;
@@ -28,9 +25,7 @@ let yeartext = document.getElementsByClassName('year');
 yeartext[0].innerText = _year;
 
 // 날짜 뿌리기
-
-while ( cell.hasChildNodes() ) { cell.removeChild( cell.firstChild ); }
-
+while ( cell.hasChildNodes() ) { cell.removeChild( cell.firstChild ); } // 자식태그 다 지우기
 
  let cont = 1;
     for(let i = 0 ; i < 8 ; i++){  
@@ -76,7 +71,6 @@ window.onload = function(){
     let nextMonth = document.querySelector(".nextMonth");
     
 
-
     premove.addEventListener('click', function(){ 
      
         controll --;
@@ -113,9 +107,15 @@ window.onload = function(){
     });
   
  
-    
+    let btnSave = document.querySelector(".save");
+    let todoText = document.querySelector(".textzone");
+    let todoList = document.querySelector("#todolist");
+
     cell.addEventListener('click',function(event){
-       
+
+        todoText.value = "";
+        while ( todoList.hasChildNodes() ) { todoList.removeChild( todoList.firstChild ); } 
+
         let celltd =  cell.getElementsByTagName('td');
        
         for( let i = 0 ; i < celltd.length; i++ ){
@@ -134,42 +134,36 @@ window.onload = function(){
        let monthtext = document.getElementsByClassName('month');
        document.querySelector(".selmonth").innerHTML = monthtext[0].innerText;
        document.querySelector(".selday").innerHTML = ele.childNodes[0].innerText;
+
   
-
-
    });
 
-   let btnSave = document.querySelector(".save");
-   let todoText = document.querySelector(".textzone");
-   let todoList = document.querySelector("#todolist");
-
+ 
 
    btnSave.addEventListener('click',function(){
 
    let datesellect =  document.querySelector(".selmonth").innerHTML;
  
 
-   if(isNaN(datesellect)){
-       alert('달력에서 날짜를 선택하세요');
-   }
-
-    
-   let li = document.createElement("li"); 
-
+    if(isNaN(datesellect)){
+        alert('달력에서 날짜를 선택하세요');
+    }
+    else if(todoText.value == ""){
+        alert('메모를 입력하세요');
+    }
+    else{
+       let li = document.createElement("li"); 
        todoList.append(li);  
        li.innerHTML = `할일 : ${todoText.value} <button type="button" class="delete">X</button>` ;
-       
-   });
+       todoText.value = "";
+       let on = document.querySelector(".on");
+       let Pspan = document.createElement("i"); 
+       on.append(Pspan);
+       Pspan.innerHTML = `추가됨`;
+    } 
 
 
+  });
 
 };
 
-
-
-
-
-// var date = new Date();
-// var firstDayOfMonth = new Date( date.getFullYear(), date.getMonth() , 1 );
-// var lastMonth = new Date ( firstDayOfMonth.setDate( firstDayOfMonth.getDate() - 1 ) );
-// alert(lastMonth.getFullYear() + "-" + lastMonth.getMonth());
