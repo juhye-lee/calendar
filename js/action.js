@@ -15,6 +15,13 @@ let lastWeek = lastDay.getDate();
 
 let cell = document.querySelector('#calender');
 
+let memolist = {};
+function memoSave(day , text){
+    memolist[day] = text;
+    console.log(memolist);
+         
+}
+
 
 function showcalender(_year , _month , _today , _firstWeek , _lastWeek) {
 //  년 월  표시
@@ -72,13 +79,9 @@ window.onload = function(){
     
 
     premove.addEventListener('click', function(){ 
-     
         controll --;
-        
         let premonthFirst= new Date(year, month + controll  ,1);
         let premonthLast= new Date(year, month + (controll + 1), 0);
-        console.log(premonthFirst);
-        console.log(premonthLast);
 
         let premonthFirstday = premonthFirst.getDay();
         let premonthLastday = premonthLast.getDate();
@@ -87,7 +90,6 @@ window.onload = function(){
 
         showcalender(preyear , preMonth , today , premonthFirstday , premonthLastday);
         
-        
     });
 
     nextMonth.addEventListener('click', function(){ 
@@ -95,7 +97,6 @@ window.onload = function(){
         controll ++;
         let nextmonthFirst= new Date(year, month + controll, 1);
         let nextmonthLast= new Date(year, month + (controll + 1), 0);
-        console.log(nextmonthFirst);
     
         let nextmonthFirstday = nextmonthFirst.getDay();
         let nextmonthLastday = nextmonthLast.getDate();
@@ -111,7 +112,11 @@ window.onload = function(){
     let todoText = document.querySelector(".textzone");
     let todoList = document.querySelector("#todolist");
 
-    cell.addEventListener('click',function(event){
+    let yeartext = document.getElementsByClassName('year');
+    let monthtext = document.getElementsByClassName('month');
+
+    // 달력클릭시
+    cell.addEventListener('click',function(event){  
 
         todoText.value = "";
         while ( todoList.hasChildNodes() ) { todoList.removeChild( todoList.firstChild ); } 
@@ -119,8 +124,8 @@ window.onload = function(){
         let celltd =  cell.getElementsByTagName('td');
        
         for( let i = 0 ; i < celltd.length; i++ ){
-            let condition = celltd[i].classList.contains('on');
-            console.log(condition);
+            let condition = celltd[i].classList.contains('on'); // 특정문자열찾기 true false 반환
+           
             if(condition){
                 celltd[i].classList.remove('on');
             }
@@ -128,23 +133,19 @@ window.onload = function(){
         }
         var ele = event.target;
         ele.classList.toggle('on');
-       let yeartext = document.getElementsByClassName('year');
+       
        document.querySelector(".selyear").innerHTML =  yeartext[0].innerText;
-
-       let monthtext = document.getElementsByClassName('month');
        document.querySelector(".selmonth").innerHTML = monthtext[0].innerText;
        document.querySelector(".selday").innerHTML = ele.childNodes[0].innerText;
 
   
    });
 
- 
+
+
 
    btnSave.addEventListener('click',function(){
-
    let datesellect =  document.querySelector(".selmonth").innerHTML;
- 
-
     if(isNaN(datesellect)){
         alert('달력에서 날짜를 선택하세요');
     }
@@ -154,14 +155,17 @@ window.onload = function(){
     else{
        let li = document.createElement("li"); 
        todoList.append(li);  
-       li.innerHTML = `할일 : ${todoText.value} <button type="button" class="delete">X</button>` ;
-       todoText.value = "";
+       li.innerHTML = `메모 : ${todoText.value} <button type="button" class="delete">X</button>` ;
+       
        let on = document.querySelector(".on");
        let Pspan = document.createElement("i"); 
        on.append(Pspan);
-       Pspan.innerHTML = `추가됨`;
+       Pspan.innerHTML = `일정추가`;
     } 
-
+    let memocontent1 = `${yeartext[0].innerText}${monthtext[0].innerText}${document.querySelector(".selday").innerHTML}`
+    let memocontent2 = `${todoText.value}`
+    memoSave(memocontent1 , memocontent2);
+    todoText.value = "";
 
   });
 
