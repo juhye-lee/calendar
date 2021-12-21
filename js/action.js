@@ -18,10 +18,8 @@ let cell = document.querySelector('#calender');
 let memolist = {};
 function memoSave(day , text){
     memolist[day] = text;
-    console.log(memolist);
-         
+    console.log(Object.keys(memolist));
 }
-
 
 function showcalender(_year , _month , _today , _firstWeek , _lastWeek) {
 //  년 월  표시
@@ -55,7 +53,6 @@ while ( cell.hasChildNodes() ) { cell.removeChild( cell.firstChild ); } // 자�
         }
         if(cont > _lastWeek ) break;
     }
-
     // 현재날짜 표시
     if(_year == year && month == _month){
         let cellcont =  cell.getElementsByTagName('td');
@@ -63,9 +60,14 @@ while ( cell.hasChildNodes() ) { cell.removeChild( cell.firstChild ); } // 자�
         cellcont[todaymark].setAttribute('style','background : #ddd;') ;
         cellcont[todaymark].childNodes[0].setAttribute('style','background : blue; color : #fff;') ;
     }
-   
-
- }
+    
+    for (var j = 0; j = memolist.length; j++) {
+        let key = Object.keys(memolist);
+        if (key.length > 0) {
+            let keyyear = Number(key[0].substring(0, 4));
+            console.log(keyyear);
+        }
+    }
 
 showcalender(year , month , today , firstWeek , lastWeek);
 
@@ -141,9 +143,6 @@ window.onload = function(){
   
    });
 
-
-
-
    btnSave.addEventListener('click',function(){
    let datesellect =  document.querySelector(".selmonth").innerHTML;
     if(isNaN(datesellect)){
@@ -162,10 +161,10 @@ window.onload = function(){
        on.append(Pspan);
        Pspan.innerHTML = `일정추가`;
     } 
-    let memocontent1 = `${yeartext[0].innerText}${monthtext[0].innerText}${document.querySelector(".selday").innerHTML}`
-    let memocontent2 = `${todoText.value}`
+    let memocontent1 = `${yeartext[0].innerText}${monthtext[0].innerText}${document.querySelector(".selday").innerHTML}`;
+    let memocontent2 = `${todoText.value}`;
     memoSave(memocontent1 , memocontent2);
-    todoText.value = "";
+     todoText.value = "";
 
   });
 
