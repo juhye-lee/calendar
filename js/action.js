@@ -18,7 +18,11 @@ let cell = document.querySelector('#calender');
 let memolist = {};
 function memoSave(day, text) {
     memolist[day] = text;
-    console.log(Object.keys(memolist));
+    for( item in memolist){
+        console.log("key: " + item + ", value: " + memolist[item]);
+        
+    }
+  
 }
 
 function showcalender(_year, _month, _today, _firstWeek, _lastWeek) {
@@ -63,17 +67,24 @@ function showcalender(_year, _month, _today, _firstWeek, _lastWeek) {
         cellcont[todaymark].childNodes[0].setAttribute('style', 'background : blue; color : #fff;');
     }
 
+    // 등록된 메모 날짜 표시
     let key = Object.keys(memolist);
-   
-    for (var j = 0; j < key.length; j++) {
-        if (key.length > 0) {
-            let keyyear = key[j].substring(0, 4);
 
-           
+    for( let j= 0; j < key.length; j++){
+        let memoyear = key[j];
+         memoyear = (memoyear.toString()).substring(0,4);
+         memomonth = (memoyear.toString()).substring(5,2);
 
-           
-        }
+         if(memoyear = _year){
+            if(memomonth = monthtext[0].value){
+                
+            }
+
+         }
+        console.log(memoyear);
     }
+    // let key1 = Object.values(memolist);
+    
   
     
 };
@@ -144,11 +155,9 @@ function showcalender(_year, _month, _today, _firstWeek, _lastWeek) {
             }
             var ele = event.target;
             ele.classList.toggle('on');
-
             document.querySelector(".selyear").innerHTML = yeartext[0].innerText;
             document.querySelector(".selmonth").innerHTML = monthtext[0].innerText;
             document.querySelector(".selday").innerHTML = ele.childNodes[0].innerText;
-
 
         });
 
