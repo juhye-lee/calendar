@@ -54,14 +54,15 @@ function showcalender(_year, _month, _today, _firstWeek, _lastWeek) {
             else {
                 td.append(span);
                 span.innerHTML = ("00" + cont.toString()).slice(-2);
+              
                 cont++;
             }
         }
         if (cont > _lastWeek) break;
     }
     // 현재날짜 표시
+    let cellcont = cell.getElementsByTagName('td');
     if (_year == year && month == _month) {
-        let cellcont = cell.getElementsByTagName('td');
         let todaymark = _today + (_firstWeek - 1);
         cellcont[todaymark].setAttribute('style', 'background : #ddd;');
         cellcont[todaymark].childNodes[0].setAttribute('style', 'background : blue; color : #fff;');
@@ -71,21 +72,18 @@ function showcalender(_year, _month, _today, _firstWeek, _lastWeek) {
     let key = Object.keys(memolist);
 
     for( let j= 0; j < key.length; j++){
-        let memoyear = key[j];
-         memoyear = (memoyear.toString()).substring(0,4);
-         memomonth = (memoyear.toString()).substring(5,2);
+        let memoindex = key[j];
+         memoyear = (memoindex.toString()).substring(0,4);
+         memomonth = (memoindex.toString()).substring(4,6);
+         memoday = (memoindex.toString()).substring(6,8);
 
-         if(memoyear = _year){
-            if(memomonth = monthtext[0].value){
-                
-            }
-
+         if(memoyear ==  _year && memomonth == monthtext[0].value){
+            memoday = Number(memoday);
+            let Pspan = document.createElement("i");
+             cellcont[memoday + _firstWeek - 1].append(Pspan);
+            Pspan.innerHTML=`일정추가`;
          }
-        console.log(memoyear);
     }
-    // let key1 = Object.values(memolist);
-    
-  
     
 };
 
